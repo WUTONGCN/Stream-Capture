@@ -9,9 +9,9 @@
   - 下载: [Npcap 官方站点](https://npcap.com/#download)
 ## 允许截图
 - 小红书
-<img src="image/小红书.png" width="20" />
+<img src="image/小红书.png"/>
 - 抖音
-<img src="image/抖音.png" width="20" />
+<img src="image/抖音.png"/>
 
 ## 支持的平台
 
