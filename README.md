@@ -12,6 +12,8 @@
 <img src="image/小红书.png"/>
 - 抖音
 <img src="image/抖音.png"/>
+- B站
+<img src="image/B站.png"/>
 
 ## 支持的平台
 
