@@ -21,7 +21,7 @@ Windows 本地直播推流地址采集工具。主程序采用 C# / WPF / .NET 8
 ```powershell
 git clone https://github.com/WUTONGCN/Stream-Capture.git
 cd Stream-Capture
-dotnet restore -r win-x64
+dotnet restore -r win-x64 -p:Configuration=Release
 dotnet build -c Release --no-restore
 dotnet publish -c Release -r win-x64 -o artifacts/community
 ```
