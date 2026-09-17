@@ -1,0 +1,37 @@
+# Build and editor outputs
+bin/
+obj/
+build/
+out/
+publish/
+artifacts/
+.vs/
+.vscode/
+.idea/
+.DS_Store
+*.user
+*.suo
+*.dll
+*.exe
+*.pdb
+*.nupkg
+# Private configuration and captured data
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key
+.token.dat
+.user.dat
+.license/
+*.log
+logs/
+captures/
+*.pcap
+*.pcapng
+captured_urls.txt
+installers/
+# Nested vendored repository metadata
+**/.git/

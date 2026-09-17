@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Nullable>enable</Nullable>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>StreamCapture</AssemblyName>
+    <RootNamespace>StreamCapture</RootNamespace>
+    <Version>1.0.0</Version>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+  </PropertyGroup>
+
+  <!-- 发布配置：单文件 + 自包含 + 安全加固 -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- <PackageReference Include="EasyHook" Version="2.7.7097" /> --> <!-- 不支持 .NET 8.0，已禁用 -->
+    <PackageReference Include="SharpPcap" Version="6.2.5" />
+    <PackageReference Include="PacketDotNet" Version="1.4.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NLog" Version="5.2.8" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+    <PackageReference Include="Titanium.Web.Proxy" Version="3.1.1450" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 将配置文件嵌入为资源 -->
+    <EmbeddedResource Include="platforms.json" />
+
+    <!-- 将图片文件嵌入为资源 -->
+    <EmbeddedResource Include="image\**\*.*" />
+
+    <!-- 将 Hook DLL 嵌入为资源（自动打包，避免外部文件被占用） -->
+    <EmbeddedResource Include="NativeHook\build\bin\Release\KuaishouHook.dll" Condition="Exists('NativeHook\build\bin\Release\KuaishouHook.dll')" Link="KuaishouHook.dll" />
+
+    <!-- 将 Npcap 安装包嵌入为资源（需要 OEM 许可） -->
+
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
+  </ItemGroup>
+
+
+  <!-- 编译前复制 Native Hook DLL 到输出目录（用于嵌入资源） -->
+  <Target Name="CopyNativeHookDll" BeforeTargets="BeforeBuild;BeforePublish">
+    <Copy
+      SourceFiles="NativeHook\build\bin\Release\KuaishouHook.dll"
+      DestinationFolder="$(OutDir)"
+      SkipUnchangedFiles="true"
+      Condition="Exists('NativeHook\build\bin\Release\KuaishouHook.dll')" />
+    <Message Text="✅ Copied Native Hook DLL to $(OutDir)" Condition="Exists('NativeHook\build\bin\Release\KuaishouHook.dll')" Importance="high" />
+    <Warning Text="⚠️  Native Hook DLL not found: NativeHook\build\bin\Release\KuaishouHook.dll" Condition="!Exists('NativeHook\build\bin\Release\KuaishouHook.dll')" />
+  </Target>
+
+</Project>

@@ -1,0 +1,154 @@
+{
+  "platforms": [
+    {
+      "id": "douyin",
+      "name": "抖音",
+      "enabled": true,
+      "protocols": ["rtmp", "rtmps"],
+      "ports": [1935, 443, 19350],
+      "domainPatterns": [
+        "live\\.douyin\\.com",
+        ".*\\.douyincdn\\.com",
+        ".*\\.douyinpic\\.com",
+        "webcast.*\\.douyincdn\\.com"
+      ],
+      "urlPatterns": [
+        "rtmps?://[^\\s\"'<>]+",
+        "push_url[\"']?:\\s*[\"']([^\"']+)[\"']",
+        "stream_url[\"']?:\\s*[\"']([^\"']+)[\"']"
+      ],
+      "keywordPatterns": [
+        "rtmp://",
+        "rtmps://",
+        "live.douyin.com",
+        "stream_id",
+        "stream_key",
+        "push_url"
+      ]
+    },
+    {
+      "id": "xiaohongshu",
+      "name": "小红书",
+      "enabled": false,
+      "protocols": ["rtmp", "rtmps", "webrtc"],
+      "ports": [1935, 443],
+      "domainPatterns": [
+        "live-push\\.xhscdn\\.com",
+        ".*\\.xhscdn\\.com",
+        "live\\.xiaohongshu\\.com"
+      ],
+      "urlPatterns": [
+        "rtmps?://[^\\s\"'<>]+",
+        "pushUrl[\"']?:\\s*[\"']([^\"']+)[\"']",
+        "liveUrl[\"']?:\\s*[\"']([^\"']+)[\"']"
+      ],
+      "keywordPatterns": [
+        "rtmp://",
+        "rtmps://",
+        "xhscdn.com",
+        "pushUrl",
+        "liveUrl",
+        "streamKey"
+      ]
+    },
+    {
+      "id": "bilibili",
+      "name": "哔哩哔哩",
+      "enabled": false,
+      "protocols": ["rtmp", "rtmps"],
+      "ports": [1935, 443],
+      "domainPatterns": [
+        "live-push\\.bilivideo\\.com",
+        ".*\\.live-push\\.bilivideo\\.com",
+        "live-?bvc"
+      ],
+      "urlPatterns": [
+        "rtmps?://[^\\s\"'<>]+",
+        "rtmp_url[\"']?:\\s*[\"']([^\"']+)[\"']",
+        "code[\"']?:\\s*[\"']([^\"']+)[\"']"
+      ],
+      "keywordPatterns": [
+        "rtmp://",
+        "rtmps://",
+        "rtmpsrt://",
+        "live-push.bilivideo.com",
+        "live-bvc",
+        "rtmp_url",
+        "code",
+        "streamname=live_"
+      ]
+    },
+    {
+      "id": "jd",
+      "name": "京东",
+      "enabled": false,
+      "protocols": ["rtmp"],
+      "ports": [1935, 443],
+      "domainPatterns": [
+        "zt-push-ai\\.jdcloud\\.com",
+        ".*\\.jdcloud\\.com",
+        ".*push.*\\.jd\\.com"
+      ],
+      "urlPatterns": [
+        "rtmps?://[^\\s\"'<>]+",
+        "push_url[\"']?:\\s*[\"']([^\"']+)[\"']",
+        "stream_url[\"']?:\\s*[\"']([^\"']+)[\"']"
+      ],
+      "keywordPatterns": [
+        "rtmp://",
+        "jdcloud.com",
+        "auth_key",
+        "live/",
+        "push_url"
+      ]
+    },
+    {
+      "id": "kuaishou",
+      "name": "快手",
+      "enabled": false,
+      "protocols": ["rtmp", "rtmps", "webrtc"],
+      "ports": [1935, 443, 19350, 1936, 80, 8080],
+      "domainPatterns": [
+        "live-push\\.kuaishou\\.com",
+        ".*\\.kuaishou\\.com",
+        ".*\\.ksyun\\.com",
+        ".*\\.yximgs\\.com",
+        ".*\\.gifshow\\.com",
+        "apijs\\.gifshow\\.com",
+        "open-push\\.yximgs\\.com",
+        "live\\.kuaishou\\.com",
+        "push\\.kuaishou\\.com"
+      ],
+      "urlPatterns": [
+        "rtmps?://[^\\s\"'<>]+",
+        "push_url[\"']?:\\s*[\"']([^\"']+)[\"']",
+        "rtmpUrl[\"']?:\\s*[\"']([^\"']+)[\"']",
+        "streamUrl[\"']?:\\s*[\"']([^\"']+)[\"']"
+      ],
+      "keywordPatterns": [
+        "rtmp://",
+        "rtmps://",
+        "kuaishou.com",
+        "ksyun.com",
+        "yximgs.com",
+        "gifshow",
+        "push_url",
+        "rtmpUrl",
+        "pushRtmpUrl",
+        "streamUrl",
+        "stream_name",
+        "live_key",
+        "kwai_",
+        "startPushMobileOrigin",
+        "/rest/n/live/mate/"
+      ]
+    }
+  ],
+  "general": {
+    "captureTimeout": 300,
+    "maxPacketsBuffer": 10000,
+    "enableSSLDecrypt": false,
+    "autoSave": false,
+    "saveDirectory": "./captures"
+  }
+}

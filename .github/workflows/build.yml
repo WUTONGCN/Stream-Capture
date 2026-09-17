@@ -1,0 +1,22 @@
+name: Windows build
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Build optional Native Hook
+        run: |
+          cmake -S NativeHook -B NativeHook/build -A x64
+          cmake --build NativeHook/build --config Release
+      - run: dotnet restore -r win-x64
+      - run: dotnet build -c Release --no-restore
+      - run: dotnet publish -c Release --no-restore -r win-x64 -o artifacts/community

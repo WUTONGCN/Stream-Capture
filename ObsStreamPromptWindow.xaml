@@ -1,0 +1,125 @@
+<Window x:Class="StreamCapture.ObsStreamPromptWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="OBS推流提示"
+        Height="400" Width="600"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Topmost="True"
+        Background="#0d1117"
+        Foreground="#e6edf3">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 标题 -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="推流地址已自动配置完成"
+                       FontSize="22" FontWeight="Bold" Foreground="#3fb950"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="请在10秒内完成以下操作"
+                       FontSize="15" Foreground="#d29922"
+                       HorizontalAlignment="Center" Margin="0,8,0,0"/>
+        </StackPanel>
+
+        <!-- 操作步骤 -->
+        <Border Grid.Row="1" Background="#161b22" CornerRadius="6" Padding="20"
+                BorderBrush="#30363d" BorderThickness="1">
+            <StackPanel>
+                <TextBlock Text="下一步操作：" FontSize="16" FontWeight="Bold" Foreground="#e6edf3" Margin="0,0,0,15"/>
+
+                <!-- 步骤1 -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <Border Width="28" Height="28" CornerRadius="14" Background="#58a6ff" Margin="0,0,10,0">
+                        <TextBlock Text="1" Foreground="White" FontWeight="Bold" FontSize="14"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock VerticalAlignment="Center">
+                        <Run Text="在OBS窗口中，点击菜单：" Foreground="#c9d1d9" FontSize="14"/>
+                        <Run Text="工具 → 多路推流设置" Foreground="#3fb950" FontWeight="Bold" FontSize="14"/>
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- 步骤2 -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <Border Width="28" Height="28" CornerRadius="14" Background="#58a6ff" Margin="0,0,10,0">
+                        <TextBlock Text="2" Foreground="White" FontWeight="Bold" FontSize="14"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock VerticalAlignment="Center">
+                        <Run Text="勾选刚添加的推流目标（" Foreground="#c9d1d9" FontSize="14"/>
+                        <Run x:Name="TargetNameRun" Text="快手 - 14:30:45" Foreground="#d29922" FontWeight="Bold" FontSize="14"/>
+                        <Run Text="）" Foreground="#c9d1d9" FontSize="14"/>
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- 步骤3 -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <Border Width="28" Height="28" CornerRadius="14" Background="#58a6ff" Margin="0,0,10,0">
+                        <TextBlock Text="3" Foreground="White" FontWeight="Bold" FontSize="14"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock VerticalAlignment="Center">
+                        <Run Text="点击" Foreground="#c9d1d9" FontSize="14"/>
+                        <Run Text="【开始所有推流】" Foreground="#f85149" FontWeight="Bold" FontSize="14"/>
+                        <Run Text="按钮" Foreground="#c9d1d9" FontSize="14"/>
+                    </TextBlock>
+                </StackPanel>
+
+                <Border Height="1" Background="#30363d" Margin="0,12,0,12"/>
+
+                <!-- 提示 -->
+                <TextBlock FontSize="13" Foreground="#8b949e" TextWrapping="Wrap">
+                    <Run Text="提示：" FontWeight="Bold"/>
+                    <Run Text="服务器地址和流密钥已自动填写，您"/>
+                    <Run Text="无需输入任何信息" FontWeight="Bold" Foreground="#3fb950"/>
+                    <Run Text="，只需点击即可。"/>
+                </TextBlock>
+
+                <TextBlock FontSize="13" Foreground="#d29922" TextWrapping="Wrap" Margin="0,8,0,0">
+                    <Run Text="重要：" FontWeight="Bold"/>
+                    <Run Text="推流地址有效期约30秒-2分钟，请尽快完成操作！"/>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <!-- 按钮 -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,16,0,0">
+            <Button Content="我知道了" Width="120" Height="38" FontSize="14" FontWeight="Bold"
+                    Click="OnOKClick" Foreground="White" Cursor="Hand" Margin="0,0,10,0">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="#3fb950" CornerRadius="6" Padding="10,0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#56d364"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="暂不推流" Width="120" Height="38" FontSize="14"
+                    Click="OnCancelClick" Foreground="#c9d1d9" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="#21262d" CornerRadius="6" Padding="10,0"
+                                BorderBrush="#30363d" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#30363d"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
