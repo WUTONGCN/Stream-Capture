@@ -2,14 +2,13 @@
 
 Windows 本地直播推流地址采集工具。主程序采用 C# / WPF / .NET 8，可从本机获授权的直播流量中提取推流地址和流密钥，复制结果或填写到 OBS 多路推流配置。
 
-[源码](https://github.com/WUTONGCN/Stream-Capture) · [历史下载](https://github.com/WUTONGCN/Stream-Capture/releases) · [问题反馈](https://github.com/WUTONGCN/Stream-Capture/issues)
+[源码](https://github.com/WUTONGCN/Stream-Capture) · [下载](https://github.com/WUTONGCN/Stream-Capture/releases) · [问题反馈](https://github.com/WUTONGCN/Stream-Capture/issues)
 
-## 当前源码与历史下载
+## 功能
 
-2026-09-17 发布本地社区版源码：移除已退役的账号登录、商业授权、设备指纹和自动升级流程，无需连接原商业后端。
-历史 Release 是以前的构建，**不代表当前源码构建结果**。本次没有上传新的二进制 Release。
-
-现有解析代码覆盖抖音、小红书、哔哩哔哩及京东；平台协议可能变化，实际兼容性需在 Windows 上验证。快手 Native Hook 源码保留为实验模块，当前界面默认不开放该平台。不要把源码存在或编译成功理解为各平台均已完成实机验收。
+- 提取推流地址和流密钥，支持复制或填写到 OBS 多路推流配置。
+- 包含抖音、小红书、哔哩哔哩及京东的流量解析逻辑，兼容性受平台协议变化影响。
+- 提供可选 HTTPS 捕获。快手 Native Hook 为实验模块，默认不在界面开放。
 
 ## 环境与构建
 
@@ -58,10 +57,8 @@ DLL 存在时会自动嵌入主程序；未构建 DLL 时可使用常规抓包�
 
 ## 隐私
 
-- 社区版不包含原账号/授权服务、机器码、硬件指纹收集代码。
 - 不持久化捕获日志；原始报文不包含在 JSON 结果导出中。
 - 构建产物、抓包、日志、凭据与私人配置均由 `.gitignore` 排除。
-- 当前分支移除个人联系方式、收款二维码及可能包含推流信息的旧截图；历史提交与历史 Release 未重写。
 - 结果列表、剪贴板及主动保存的 OBS 配置仍含真实流密钥，不要公开分享。
 
 ## 贡献和许可

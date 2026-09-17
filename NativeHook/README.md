@@ -12,6 +12,6 @@ cmake --build NativeHook/build --config Release
 ```
 
 输出为 `NativeHook/build/bin/Release/KuaishouHook.dll`，后续 .NET 构建会将其嵌入程序。
-当前环境未做实际客户端注入验收；仅在获授权的设备和进程上使用。
+仅在获授权的设备和进程上使用。
 
 MinHook 的 [原许可证](minhook/LICENSE.txt) 保持不变。自有封装代码使用根目录 MIT 协议。
